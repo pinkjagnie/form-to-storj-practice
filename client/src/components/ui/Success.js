@@ -5,7 +5,8 @@ import styles from "./success.module.css";
 const Success = (props) => {
 
   const closeSuccessHandler = () => {
-    props.closeSuccessHandler()
+    props.closeSuccessHandler();
+    window.location.reload();
   };
 
   return(

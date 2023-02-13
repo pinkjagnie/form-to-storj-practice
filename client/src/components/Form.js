@@ -23,7 +23,7 @@ const Form = () => {
         data: enteredFile
       }),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": 'multipart/form-data',
       },
     });
 
@@ -39,15 +39,15 @@ const Form = () => {
       <div>
         <form className={styles.form} onSubmit={formSubmitHandler}>
           
-          {/* <div className={styles.control}>
+          <div className={styles.control}>
             <label htmlFor="file">Upload your file</label>
             <input type="file" id="file" required onChange={event => {
                 setEnteredFile(event.target.files[0]);
                 setEnteredName(event.target.files[0].name)
               }} />
-          </div> */}
+          </div>
           
-          <div className={styles.control}>
+          {/* <div className={styles.control}>
             <label htmlFor="name">Upload your file</label>
             <input type="text" id="name" required onChange={event => {
                 setEnteredFile(event.target.value)
@@ -59,7 +59,7 @@ const Form = () => {
             <input type="text" id="file" required onChange={event => {
                 setEnteredName(event.target.value)
               }} />
-          </div>
+          </div> */}
 
           <button>Submit</button>
         </form>

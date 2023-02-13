@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
 
 import styles from "./form.module.css";
 
@@ -13,19 +14,31 @@ const Form = () => {
       alert("Ups! Something went wrong. Please fill in all the fields of the form correctly")
       return;
     };
+
+    const formData = new FormData();
+    formData.append('file', enteredFile);
+
+    fetch(
+      'http://127.0.0.1:4567/upload2',
+      {
+        mode: 'no-cors',
+        method: 'POST',
+        body: formData,
+      }
+    )
     
     // TO DO: fetch
-    fetch("http://127.0.0.1:4567/upload", {
-      method: "POST",
-      mode: 'no-cors',
-      body: JSON.stringify({
-        filename: enteredName,
-        data: enteredFile
-      }),
-      headers: {
-        "Content-Type": 'multipart/form-data',
-      },
-    });
+    // fetch("http://127.0.0.1:4567/upload", {
+    //   method: "POST",
+    //   mode: 'no-cors',
+    //   body: JSON.stringify({
+    //     filename: enteredName,
+    //     data: enteredFile
+    //   }),
+    //   headers: {
+    //     "Content-Type": 'multipart/form-data',
+    //   },
+    // });
 
     console.log(enteredFile)
     console.log(enteredName)

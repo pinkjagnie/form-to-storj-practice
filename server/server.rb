@@ -19,6 +19,11 @@ require 'aws-sdk-s3'
 require 'rubygems'
 require 'sinatra'
 
+require 'dotenv/load'
+
+ACCESS_KEY_ID = ENV['ACCESS_KEY_ID']
+SECREET_ACCESS_KEY_ID = ENV['SECREET_ACCESS_KEY_ID']
+
 def object_uploaded?(s3_client, bucket_name, object_key, filename)
   response = s3_client.put_object(
     bucket: bucket_name,
@@ -40,8 +45,8 @@ def run_me(file_in)
   bucket_name = 'files-form-demo-bucket'
   object_key = file_in
   endpoint = 'https://gateway.storjshare.io'
-  accesskey = ENV[ACCESS_KEY_ID]
-  key = ENV[SECREET_ACCESS_KEY_ID]
+  accesskey = ACCESS_KEY_ID
+  key = SECREET_ACCESS_KEY_ID
   region = 'us-east-1'
   s3_client = Aws::S3:: Client.new(region: region, access_key_id: accesskey, secret_access_key: key, endpoint: endpoint)
 
@@ -63,3 +68,11 @@ post "/upload" do
 end
 
 
+post "/upload2" do
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+  File.open("./#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
+  run_me(@filename)
+end

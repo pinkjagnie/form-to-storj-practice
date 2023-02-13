@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 
 // import LoadingSpinner from './ui/LoadingSpinner';
+import Success from './ui/Success';
 
 import styles from "./form.module.css";
 
@@ -10,6 +11,11 @@ const Form = () => {
   const [enteredFile, setEnteredFile] = useState("");
 
   // const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const closeSuccessHandler = () => {
+    setShowSuccess(false)
+  };
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -50,6 +56,8 @@ const Form = () => {
     console.log(enteredFile)
     console.log(enteredName)
 
+    setShowSuccess(true);
+
     // console.log(isLoading)
     // setIsLoading(false)
 
@@ -60,6 +68,7 @@ const Form = () => {
   return(
     <>
     {/* {isLoading && <LoadingSpinner />} */}
+    {showSuccess && <Success closeSuccessHandler={closeSuccessHandler} />}
     <section className={styles.formSection}>
       <div>
         <form className={styles.form} onSubmit={formSubmitHandler}>

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 
+// import LoadingSpinner from './ui/LoadingSpinner';
+
 import styles from "./form.module.css";
 
 const Form = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredFile, setEnteredFile] = useState("");
+
+  // const [isLoading, setIsLoading] = useState(false);
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -14,6 +18,9 @@ const Form = () => {
       alert("Ups! Something went wrong. Please fill in all the fields of the form correctly")
       return;
     };
+
+    // setIsLoading(true)
+    // console.log(isLoading)
 
     const formData = new FormData();
     formData.append('file', enteredFile);
@@ -43,11 +50,16 @@ const Form = () => {
     console.log(enteredFile)
     console.log(enteredName)
 
+    // console.log(isLoading)
+    // setIsLoading(false)
+
     setEnteredFile("")
     setEnteredName("")
   }
 
   return(
+    <>
+    {/* {isLoading && <LoadingSpinner />} */}
     <section className={styles.formSection}>
       <div>
         <form className={styles.form} onSubmit={formSubmitHandler}>
@@ -78,6 +90,7 @@ const Form = () => {
         </form>
       </div>
     </section>
+    </>
   )
 };
 

@@ -37,11 +37,11 @@ end
 
 # Full example call:
 def run_me(file_in)
-  bucket_name = 'NAZWA BUCTKETA KTÓRY UTWORZYSZ'
+  bucket_name = 'files-form-demo-bucket'
   object_key = file_in
   endpoint = 'https://gateway.storjshare.io'
-  accesskey = 'ACCESS KEY ID'
-  key = 'SECREET ACCESS KEY ID'
+  accesskey = ENV[ACCESS_KEY_ID]
+  key = ENV[SECREET_ACCESS_KEY_ID]
   region = 'us-east-1'
   s3_client = Aws::S3:: Client.new(region: region, access_key_id: accesskey, secret_access_key: key, endpoint: endpoint)
 

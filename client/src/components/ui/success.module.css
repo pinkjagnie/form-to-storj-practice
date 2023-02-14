@@ -12,7 +12,6 @@
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  padding-top: 2rem;
   background-color: #221f23;
 }
 
@@ -23,19 +22,31 @@
 
 .thanksTitle {
   margin: 40px auto;
-  font-size: 4em;
+  font-size: 3rem;
   font-weight: 900;
   letter-spacing: 3px;
 }
 
 .thanksText {
   margin: 0 auto;
-  font-size:1.3em;
+  font-size: 1rem;
 }
 
+.downloadTitle {
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.buttonsBox {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.downloadButton,
 .goBackButton {
   display: block;
-  width: 50%;
+  width: 38%;
   padding: 0.5rem 2rem;
   margin: 1.2rem auto 0 auto;
   border: 1.5px solid whitesmoke;
@@ -45,6 +56,20 @@
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+.downloadButton {
+  background-color: darkorchid;
+  color: whitesmoke;
+}
+
+.downloadButton:hover {
+  background-color: #1f2b37;
+}
+
+.goBackButton {
+  background-color: #656565;
+  color: whitesmoke;
 }
 
 .goBackButton:hover {

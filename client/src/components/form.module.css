@@ -2,6 +2,11 @@
   padding-top: 4rem;
 }
 
+.formSection h1 {
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
 .form {
   width: 60%;
   padding: 1.5rem;
@@ -38,9 +43,22 @@
   border-color: #656565;
 }
 
+.canceled {
+  margin: 0.8rem auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: lightcoral;
+}
+
+.buttonsBox {
+  display: flex;
+  justify-content: space-around;
+}
+
 .form button {
   display: block;
-  width: 50%;
+  width: 40%;
   margin: 1.2rem auto 0 auto;
   padding: 0.5rem 2rem;
   border: 1.5px solid whitesmoke;

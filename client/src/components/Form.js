@@ -10,12 +10,25 @@ const Form = () => {
   const [enteredName, setEnteredName] = useState("");
   const [enteredFile, setEnteredFile] = useState("");
 
+  const [isCancel, setIsCancel] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const closeSuccessHandler = () => {
     setShowSuccess(false)
   };
+
+  const cancelHandler = (event) => {
+    event.preventDefault();
+
+    setIsCancel(true);
+    setEnteredFile("");
+    setEnteredName("")
+
+    setTimeout(() => {
+      setIsCancel(false);
+    }, "2000")
+  }
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -70,8 +83,9 @@ const Form = () => {
     {/* {isLoading && <LoadingSpinner />} */}
     {showSuccess && <Success closeSuccessHandler={closeSuccessHandler} />}
     <section className={styles.formSection}>
+      <h1>Upload your file with the form below</h1>
       <div>
-        <form className={styles.form} onSubmit={formSubmitHandler}>
+        <form className={styles.form}>
           
           <div className={styles.control}>
             <label htmlFor="file">Upload your file</label>
@@ -94,8 +108,12 @@ const Form = () => {
                 setEnteredName(event.target.value)
               }} />
           </div> */}
-
-          <button>Submit</button>
+          
+          {isCancel && <p className={styles.canceled}>Canceled!</p>}
+          <div className={styles.buttonsBox}>
+            <button onClick={cancelHandler}>Cancel</button>
+            <button onClick={formSubmitHandler}>Submit</button>
+          </div>
         </form>
       </div>
     </section>

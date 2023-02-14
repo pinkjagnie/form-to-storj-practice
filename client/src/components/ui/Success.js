@@ -9,6 +9,10 @@ const Success = (props) => {
     window.location.reload();
   };
 
+  const downloadHandler = () => {
+    props.downloadHandler()
+  };
+
   return(
     <section className={styles.thanksSection}>
       <div className={styles.thanksBox}>
@@ -18,7 +22,7 @@ const Success = (props) => {
           <p className={styles.thanksText}>Your file has been send to our amazing database</p> 
           <p className={styles.downloadTitle}>You can now download that file or just go back</p>
           <div className={styles.buttonsBox}>
-            <button className={styles.downloadButton}>Download</button>
+            <button className={styles.downloadButton} onClick={downloadHandler}>Download</button>
             <button className={styles.goBackButton} onClick={closeSuccessHandler}>Go back</button>
           </div>
         </div>

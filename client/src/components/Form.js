@@ -14,6 +14,8 @@ const Form = () => {
   // const [isLoading, setIsLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const [isUrl, setIsUrl] = useState("");
+
   const closeSuccessHandler = () => {
     setShowSuccess(false)
   };
@@ -52,6 +54,8 @@ const Form = () => {
         body: formData,
       }
     )
+
+    setIsUrl(enteredName)
     
     // TO DO: fetch
     // fetch("http://127.0.0.1:4567/upload", {
@@ -78,10 +82,40 @@ const Form = () => {
     setEnteredName("")
   }
 
+  const downloadHandler = () => {
+    let url = `http://127.0.0.1:4567/get/${isUrl}`
+    
+    fetch(url, {
+      mode: 'no-cors',
+    })
+    .then((response) => response.blob())
+    .then((blob) => {
+    // Create blob link to download
+      const url = window.URL.createObjectURL(
+        new Blob([blob]),
+      );
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute(
+        'download',
+        `${isUrl}`,
+      );
+
+      // Append to html link element page
+      document.body.appendChild(link);
+
+      // Start download
+      link.click();
+
+      // Clean up and remove the link
+      link.parentNode.removeChild(link);
+    })
+  };
+
   return(
     <>
     {/* {isLoading && <LoadingSpinner />} */}
-    {showSuccess && <Success closeSuccessHandler={closeSuccessHandler} />}
+    {showSuccess && <Success closeSuccessHandler={closeSuccessHandler} downloadHandler={downloadHandler} />}
     <section className={styles.formSection}>
       <h1>Upload your file with the form below</h1>
       <div>
